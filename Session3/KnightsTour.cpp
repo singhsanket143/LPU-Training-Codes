@@ -14,95 +14,85 @@ bool isItSafe(int **grid, int x, int y, int m , int n) {
 	return x>=0 and y>=0 and x<m and y<n and grid[x][y]==-1;
 }
 
-bool knightsTour(int **grid, int x, int y, int m, int n, int csf) {
+void knightsTour(int **grid, int x, int y, int m, int n, int csf) {
 	// base case
 	if(csf == m*n-1) {
 		grid[x][y] = csf;
-		display(arr, m, n);
-		return true;
+		display(grid, m, n);
+		cout<<"\n\n";
+		grid[x][y] = -1;
+		return;
 	}
 
 	if(isItSafe(grid, x+1, y+2, m, n)) {
 		// Work
 		grid[x][y] = csf;
-		if(knightsTour(grid, x+1, y+2, m, n, csf+1)) {
-			return true;
-		} else {
-			grid[x][y]=-1;
-		}
+		knightsTour(grid, x+1, y+2, m, n, csf+1) ;
+		grid[x][y]=-1;
+		
 	}
 
 	if(isItSafe(grid, x-1, y+2, m, n)) {
 		// Work
 		grid[x][y] = csf;
-		if(knightsTour(grid, x-1, y+2, m, n, csf+1)) {
-			return true;
-		} else {
+		knightsTour(grid, x-1, y+2, m, n, csf+1);
+		
 			grid[x][y]=-1;
-		}
+		
 	}
 
 	if(isItSafe(grid, x+2, y-1, m, n)) {
 		// Work
 		grid[x][y] = csf;
-		if(knightsTour(grid, x+2, y-1, m, n, csf+1)) {
-			return true;
-		} else {
+		knightsTour(grid, x+2, y-1, m, n, csf+1);
+		
 			grid[x][y]=-1;
-		}
+		
 	}
 
 	if(isItSafe(grid, x+2, y+1, m, n)) {
 		// Work
 		grid[x][y] = csf;
-		if(knightsTour(grid, x+2, y+1, m, n, csf+1)) {
-			return true;
-		} else {
+		knightsTour(grid, x+2, y+1, m, n, csf+1);
+		
 			grid[x][y]=-1;
-		}
+		
 	}
 
 	if(isItSafe(grid, x+1, y-2, m, n)) {
 		// Work
 		grid[x][y] = csf;
-		if(knightsTour(grid, x+1, y-2, m, n, csf+1)) {
-			return true;
-		} else {
+		knightsTour(grid, x+1, y-2, m, n, csf+1);
+		
 			grid[x][y]=-1;
-		}
+		
 	}
 
 	if(isItSafe(grid, x-1, y-2, m, n)) {
 		// Work
 		grid[x][y] = csf;
-		if(knightsTour(grid, x-1, y-2, m, n, csf+1)) {
-			return true;
-		} else {
+		knightsTour(grid, x-1, y-2, m, n, csf+1);
+		
 			grid[x][y]=-1;
-		}
+		
 	}
 
 	if(isItSafe(grid, x-2, y-1, m, n)) {
 		// Work
 		grid[x][y] = csf;
-		if(knightsTour(grid, x-2, y-1, m, n, csf+1)) {
-			return true;
-		} else {
+		knightsTour(grid, x-2, y-1, m, n, csf+1);
+		 
 			grid[x][y]=-1;
-		}
+		
 	}
 
 	if(isItSafe(grid, x-2, y+1, m, n)) {
 		// Work
 		grid[x][y] = csf;
-		if(knightsTour(grid, x-2, y+1, m, n, csf+1)) {
-			return true;
-		} else {
-			grid[x][y]=-1;
-		}
+		knightsTour(grid, x-2, y+1, m, n, csf+1);
+		grid[x][y]=-1;
+		
 	}
-
-	return false;
 }
 
 int main(int argc, char const *argv[])
@@ -119,10 +109,8 @@ int main(int argc, char const *argv[])
 			arr[i][j]=-1;
 		}
 	}
-	if(knightsTour(arr, 2, 2, m ,n, 0)==true) {
+	knightsTour(arr, 2, 2, m ,n, 0);
 		
-	} else {
-		cout<<"No solution";
-	}
+	
 	return 0;
 }
