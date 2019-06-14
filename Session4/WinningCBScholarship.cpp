@@ -7,7 +7,6 @@ bool check(ll n, ll m, ll x, ll y, ll ans) {
 	return ((n-ans)*y + m) >= ans*x;
 }
 
-
 int main(int argc, char const *argv[])
 {
 	ll n,m,x,y;
