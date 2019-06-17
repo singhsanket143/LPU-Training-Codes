@@ -44,6 +44,6 @@ int main(int argc, char const *argv[])
 			cin>>arr[i][j];
 		}
 	}
-	cout<<solution(n, m, arr, dp);
+	cout<<solutionBottomUp(n, m, arr, dp);
 	return 0;
 }
