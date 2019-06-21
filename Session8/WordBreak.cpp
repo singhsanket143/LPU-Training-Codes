@@ -30,7 +30,6 @@ bool wordBreak(string str, string osf) {
 bool wordBreakDP(string str, int *dp, string osf) {
 	int n=str.size();
 	if(str.size() == 0) {
-		cout<<osf<<endl;
 		return true;
 	}
 	if(dp[n]==-1) {
