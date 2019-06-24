@@ -27,6 +27,9 @@ vector<int> allAnagram(string s1, string s2) {
 	if(isAnagram(hash1, hash2)) {
 		result.push_back(0);
 	}
+
+
+
 	for(int i=s2.size();i<s1.size();i++) {
 		hash1[s1[i-s2.size()] - 'a']--;
 		hash1[s1[i]-'a']++;
@@ -36,6 +39,9 @@ vector<int> allAnagram(string s1, string s2) {
 	}
 	return result;
 }
+
+
+
 
 int main(int argc, char const *argv[])
 {

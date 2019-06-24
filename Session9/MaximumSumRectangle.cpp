@@ -25,11 +25,6 @@ int maximumSumRec(int **arr, int n, int m) {
 			for(int k = 0; k < n; k++) {
 				temp[k] = temp[k] + arr[k][j]; 
 			}	
-
-
-
-
-			
 			int kadane_ans = kadane(temp, n);
 			if(result < kadane_ans) {
 				result = kadane_ans;
