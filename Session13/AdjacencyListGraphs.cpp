@@ -115,29 +115,89 @@ public:
 		}
 		return result;
 	}
+
+	void dfsHelperTS(int node,unordered_map<int, bool> &visited, list<int> &ordering) {
+		visited[node] = true;
+		// cout<<node<<", ";
+		for(int el: this->adj[node]) {
+			if(visited.find(el)==visited.end()) {
+				dfsHelperTS(el, visited, ordering);
+			}
+		}
+		ordering.push_front(node);
+
+		
+	}
+
+	void topologicalDFS() {
+		unordered_map<int, bool> visited;
+		list<int> ordering;
+		for(int i=0;i<this->v;i++) {
+			if(visited.find(i)==visited.end()) {
+				dfsHelperTS(i, visited, ordering);
+			}
+		}
+		for(int el: ordering) {
+			cout<<el<<"<-";
+		}
+	}
+
+	void topologicalBFS() {
+		int *indegree = new int[this->v](); // Initialise indegree array
+		bool *visited = new bool[this->v]();
+		for(int i=0;i<v;i++) {
+			for(int el:adj[i]) {
+				indegree[el]++; // Fill up indegree array
+			}
+		}
+		queue<int> qu;
+		for(int i=0;i<this->v;i++) {
+			if(indegree[i] == 0) {
+				qu.push(i);
+			}
+		}
+				while(!qu.empty()) {
+					int node = qu.front();
+					cout<<node<<" ";
+					qu.pop();
+					for(int neighbour: this->adj[node]) {
+						if(visited[neighbour] == false) {
+							indegree[neighbour]--;
+							if(indegree[neighbour]==0) {
+								qu.push(neighbour);
+								visited[neighbour] = true;
+							}
+						}
+					}
+				}
+	}
 };
 
 
 int main(int argc, char const *argv[])
 {
 	/* code */
-	Graph g(7);
-	g.addEdge(0, 1);
-	g.addEdge(0, 2);
-	g.addEdge(1, 3);
-	g.addEdge(2, 3);
-	// g.addEdge(2, 4);
-	g.addEdge(4, 5);
-	g.addEdge(4, 6);
-	g.addEdge(5, 6);
+	Graph g(6);
 
-	// g.printAdj();
+	g.addEdge(0, 1, false);
+	g.addEdge(2, 0, false);
+	g.addEdge(1, 3, false);
+	g.addEdge(2, 3, false);
+	g.addEdge(3, 4, false);
+	g.addEdge(5, 2, false);
+	// // g.addEdge(2, 4);
+	// g.addEdge(4, 5);
+	// g.addEdge(4, 6);
+	// g.addEdge(5, 6);
+
+	g.printAdj();
 	// cout<<" ===================="<<endl;
 	// g.bfs(0);
 	// cout<<" ===================="<<endl;
 	// g.sssp_bfs(0, 6);
 	// cout<<" ===================="<<endl;
 	// g.dfs(0);
-	cout<<g.connectedComponent();
+	// cout<<g.connectedComponent();
+	g.topologicalBFS();
 	return 0;
 }
