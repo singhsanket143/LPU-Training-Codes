@@ -54,11 +54,11 @@ void printPic(char** pic,int n,int m) {
     for(int i=0;i<n;i++) {
 		for(int j=0;j<m;j++) {
 			if(pic[i][j]=='.')
-				cout<<black<<linux_block;
+				cout<<black<<win_block;
 			else if(pic[i][j]=='#')
-				cout<<red<<linux_block;
+				cout<<red<<win_block;
 			else if(pic[i][j]=='R')
-				cout<<bright_red<<linux_block;
+				cout<<bright_red<<win_block;
 			else
 				cout<<bright_cyan<<pic[i][j];
 		} cout<<endl;
@@ -68,7 +68,7 @@ void printPic(char** pic,int n,int m) {
 void fillColor(char ** pic,int i,int j,int n,int m) {
     if(i<0 || j<0 || i>=n || j>=m || pic[i][j]=='R' || pic[i][j]=='#') return;
     pic[i][j]='R';
-	system(linux_clear_screen.c_str());
+	system(win_clear_screen.c_str());
     printPic(pic,n,m);
     sleep();
     fillColor(pic,i+1,j,n,m);
